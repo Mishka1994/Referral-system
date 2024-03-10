@@ -1,10 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
+{% load static %}
+
+<!doctype html>
+<html lang="ru" prefix="og: http://ogp.me/ns#">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://bootstrap5.ru/examples/album"/>
+    <meta name="description"
+          content="Простой одностраничный шаблон на bootstrap 5 для фотогалерей, портфолио и многого другого.">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors, Alexey Golyagin">
+    <meta name="docsearch:language" content="ru">
+    <meta name="docsearch:version" content="5.0">
+    <title>Бесплатный bootstrap 5 шаблон - альбом</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/album.css' %}" rel="stylesheet">
+
 </head>
 <body>
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">О нас</h4>
+                    <p class="text-muted">Добавьте информацию об альбоме ниже, авторе или любом другом фоновом
+                        контексте. Составьте несколько предложений, чтобы люди могли почерпнуть некоторые полезные
+                        сведения. Затем свяжите их с некоторыми сайтами социальных сетей или с контактной
+                        информацией.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Связаться с нами</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Следуйте в Twitter</a></li>
+                        <li><a href="#" class="text-white">Лайк в Facebook</a></li>
+                        <li><a href="#" class="text-white">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2"
+                     Посмотретьbox="0 0 24 24">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <strong>Album</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+{% block content %}
 
+{% endblock %}
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-right mb-1">
+            <a href="#">Наверх</a>
+        </p>
+        <p class="mb-1">Пример альбома - © Bootstrap, пожалуйста, скачайте и настройте его под себя!</p>
+        <p class="mb-0">Новичок в Bootstrap? <a href="/">Поседите домашнюю страницу</a> или прочтите наше <a hrefdocs/getting-started/introduction">руководство
+            по началу работы</a>.</p>
+    </div>
+</footer>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+     (function(m,e,t,r,i,k,a){ m[i]=m[i]||function(){ (m[i].a=m[i].a||[]).push(arguments) }; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(67718821, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });
+</script>
+<noscript>
+    <div><img src="https://mc.yandex.ru/watch/67718821" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript> <!-- /Yandex.Metrika counter -->
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
 </body>
 </html>
