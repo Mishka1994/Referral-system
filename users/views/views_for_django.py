@@ -3,7 +3,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, TemplateView, UpdateView
 from phonenumber_field.formfields import PhoneNumberField
 
-from users.forms import UserForm, PhoneForm
+from users.forms import UserForm
 from users.models import User
 from users.service import generate_authorization_code
 
@@ -35,3 +35,5 @@ class AuthorizationTemplateView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         pass
+
+
