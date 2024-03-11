@@ -3,6 +3,7 @@ asttokens==2.4.1
 decorator==5.1.1
 Django==5.0.3
 django-phonenumber-field==7.3.0
+djangorestframework==3.14.0
 exceptiongroup==1.2.0
 executing==2.0.1
 ipython==8.22.2
@@ -16,6 +17,7 @@ psycopg2-binary==2.9.9
 ptyprocess==0.7.0
 pure-eval==0.2.2
 Pygments==2.17.2
+pytz==2024.1
 six==1.16.0
 sqlparse==0.4.4
 stack-data==0.6.3

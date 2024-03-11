@@ -15,7 +15,3 @@ class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('phone',)
-
-
-class PhoneForm(forms.Form):
-    number = PhoneNumberField(region='RU')
