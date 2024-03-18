@@ -5,7 +5,7 @@ from phonenumber_field.formfields import PhoneNumberField
 
 from users.forms import UserForm
 from users.models import User
-from users.service import generate_authorization_code
+from users.tasks import generate_authorization_code
 
 
 class BaseTemplateView(TemplateView):
@@ -15,7 +15,7 @@ class BaseTemplateView(TemplateView):
 class UserRegisterPhoneView(CreateView):
     model = User
     form_class = UserForm
-    success_url = reverse_lazy('users:authorization')
+    # success_url = reverse_lazy('users:activate_user', args=[])
 
     def form_valid(self, form):
         if form.is_valid():
@@ -24,16 +24,19 @@ class UserRegisterPhoneView(CreateView):
 
         return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse_lazy('activate_user', self.object.pk)
 
-# class UserActivateView(UpdateView):
-#     model = User
-#     form_class = UserForm
-#     success_url = reverse_lazy('users:index')
 
-class AuthorizationTemplateView(TemplateView):
-    template_name = 'authorization.html'
+class UserActivateView(UpdateView):
+    model = User
+    form_class = UserForm
+    success_url = reverse_lazy('users:index')
 
-    def get(self, request, *args, **kwargs):
-        pass
 
+# class AuthorizationTemplateView(TemplateView):
+#     template_name = 'users/user_authorization.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         pass
 
