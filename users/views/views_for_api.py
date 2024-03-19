@@ -66,11 +66,11 @@ class UserProfileView(generics.RetrieveAPIView):
                 else:
                     return Response({'result': f'Вы уже вводили ранее чужой инвайт-код: {user.someone_invite_code}'})
             else:
-                return Response({'result': 'Инвайт-код не найден!'})
+                return Response({'result': 'Инвайт-код не существует!'})
         return Response({'result': 'Ваш профиль:',
                          'profile_data': {
                              'phone': str(user.phone),
-                             'status': str(user.is_active),
+                             'activation_status': user.is_active,
                              'personal_invite_code': str(user.personal_invite_code),
                              'someone_invite_code': str(user.someone_invite_code),
                              'users_your_invite_code': self.serializer_class.get_users_your_code(user)
