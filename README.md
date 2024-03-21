@@ -21,11 +21,17 @@
 
 Пример кода для запроса на создание:
 
-`curl POST --data "phone=+79965009421" http://localhost:8001/api/create/`
+### Важно! 
+
+___Символ %2B распознается curl как знак сложения (+). Поэтому в запросах с curl нужно использовать именно такую конструкцию!___
+
+`curl POST --data "phone=%2B79998887766" http://localhost:8001/api/create/`
+
+
 
 Пример кода для запроса на авторизацию:
 
-`curl POST --data "phone=+79965009421&authorization_code=AAAA" http://localhost:8001/api/create/`
+`curl POST --data "phone=%2B79998887766&authorization_code=AAAA" http://localhost:8001/api/create/`
 
 | Параметр строки запроса | Обязательный\ Не обязательный | Описание                                                              | тип данных |
 |-------------------------|-------------------------------|-----------------------------------------------------------------------|------------|
@@ -69,11 +75,11 @@
 
 Пример кода для запроса на вывод информации о пользователе:
 
-`curl -G -d 'phone=+79998887766' http://localhost:8001/api/profile`
+`curl -G -d 'phone=%2B79998887766' http://localhost:8001/api/profile`
 
 Пример кода при регистрации инвайт-кода:
 
-`curl POST --data 'someone_invite_code=q1w2e3' http://localhost:8001/api/profile`
+`curl -G -d 'someone_invite_code=q1w2e3' http://localhost:8001/api/profile`
 
 ### Инструкция по получению личной информации пользователя
 
