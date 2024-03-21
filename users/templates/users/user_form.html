@@ -9,11 +9,14 @@
                 <div class="card-body md-5">
                     <form method="post">
                         {% csrf_token %}
-                        {{ form.as_p }}
+                        <input type="text" name="phone" class="form-control" placeholder="+7 XXX XXX XX XX">
                         <div class="card-footer">
                             <button type="submit" class="btn btn-outline-primary">Создать</button>
                         </div>
                     </form>
+                    <span id="passwordHelpInline" class="form-text">
+      Введите ваш телефон
+    </span>
                 </div>
 
             </div>

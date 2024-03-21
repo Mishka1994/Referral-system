@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name:
+      postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=mydb
+    ports:
+      - '5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    tty: True
+    build: .
+    command: sh -c 'python manage.py migrate && python manage.py runserver 0.0.0.0:8000'
+    ports:
+      - '8001:8000'
+    depends_on:
+      db:
+        condition: service_healthy
