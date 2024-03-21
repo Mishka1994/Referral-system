@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_yasg',
 
     'users',
     'phonenumber_field',
@@ -81,9 +82,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'referral_system',
-        'USER': 'mihail',
-        'PASSWORD': '12345'
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
@@ -134,10 +137,3 @@ STATICFILES_DIRS = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
-
-
-CELERY_BROKER_URL = 'redis://localhost:6379'
-
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-
-CELERY_TIMEZONE = "Europe/Moscow"

@@ -4,15 +4,12 @@ from rest_framework.response import Response
 from users.models import User
 from users.permissions import IsAuthorization
 from users.serializers import UserSerializer, UserProfileSerializer
-from users.service import generate_invite_code
-from users.tasks import generate_authorization_code
+from users.service import generate_invite_code, generate_authorization_code
 
 
 class UserAuthorizationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
-
-    # permission_classes = [IsAuthorization,]
 
     def create(self, request, *args, **kwargs):
         phone = request.data['phone']
@@ -29,23 +26,22 @@ class UserAuthorizationView(generics.CreateAPIView):
                                       }
                              })
         else:
-            result = generate_authorization_code.delay()
-            code = result.get()
+            result = generate_authorization_code()
             if User.objects.filter(phone=phone).first():
                 user = User.objects.filter(phone=phone).first()
-                user.authorization_code = code
-                print(code)
+                user.authorization_code = result
+                print(result)
                 user.save()
-                return Response({'result': f'Введите код: {code} при повторной отправке формы'})
+                return Response({'result': f'Введите код: {result} при повторной отправке формы'})
             else:
                 User.objects.create(
                     phone=phone,
-                    authorization_code=code,
+                    authorization_code=result,
                     personal_invite_code=generate_invite_code()
                 )
-                print(code)
+                print(result)
                 return Response({'result': 'Пользователь создан. '
-                                           f'Но нужно авторизоваться, введите код: {code} при повторной отправке формы!'})
+                                           f'Но нужно авторизоваться, введите код: {result} при повторной отправке формы!'})
 
 
 class UserProfileView(generics.RetrieveAPIView):
@@ -58,7 +54,7 @@ class UserProfileView(generics.RetrieveAPIView):
         user = User.objects.get(phone=data_with_phone)
         someone_code = request.data.get('someone_invite_code')
         if someone_code:
-            if User.objects.get(personal_invite_code=someone_code):
+            if User.objects.filter(personal_invite_code=someone_code).first():
                 if user.someone_invite_code is None:
                     user.someone_invite_code = someone_code
                     user.save()

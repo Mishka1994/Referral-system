@@ -1,21 +1,16 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-<main>
-    <section class="py-5 text-center container">
-        <div class="row g-3 align-items-center">
-            <div class="col-auto">
-                <label  class="col-form-label">Код</label>
-            </div>
-            <div class="col-auto">
-                <input type="text" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
-            <div class="col-auto">
-    <span id="passwordHelpInline" class="form-text">
+<div class="row">
+    <div class="col-12">
+        <form method="post" class="form-control">
+            {% csrf_token %}
+            <input type="text" name="code" class="form-control" placeholder="Введите 4-ч значный код">
+            <button type="submit">Подтвердить</button>
+        </form>
+        <span id="passwordHelpInline" class="form-text">
       Введите код из 4 символов
     </span>
-            </div>
-        </div>
-    </section>
-</main>
+    </div>
+</div>
 {% endblock %}
