@@ -84,5 +84,5 @@ class UserProfileView(generics.RetrieveAPIView):
                              'activation_status': user.is_active,
                              'personal_invite_code': str(user.personal_invite_code),
                              'someone_invite_code': str(user.someone_invite_code),
-                             'users_your_invite_code': list_users
+                             'referral_users': list_users
                          }})
