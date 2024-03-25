@@ -2,7 +2,7 @@ from django.urls import path
 
 from users.apps import UsersConfig
 from users.views.views_for_dj_templates import UserRegisterPhoneView, BaseTemplateView, authorization_view
-from users.views.views_for_api import UserAuthorizationView, UserProfileView
+from users.views.views_for_api import UserAuthorizationView, UserProfileView, UserInputInviteCodeView
 
 app_name = UsersConfig.name
 
@@ -14,6 +14,7 @@ urlpatterns = [
 
     # Urls for DjangoRESTFramework
     path('api/create/', UserAuthorizationView.as_view(), name='user-create'),
-    path('api/profile/', UserProfileView.as_view(), name='user-profile')
+    path('api/profile/', UserProfileView.as_view(), name='user-profile'),
+    path('api/invite-code/', UserInputInviteCodeView.as_view(), name='input-code'),
 
 ]

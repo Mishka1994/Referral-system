@@ -5,8 +5,7 @@ from django.views.generic import CreateView, TemplateView, UpdateView
 from phonenumber_field.formfields import PhoneNumberField
 
 from users.forms import UserForm
-from users.models import User
-from users.service import generate_authorization_code, generate_invite_code
+from users.models import User, generate_invite_code
 
 
 class BaseTemplateView(TemplateView):
@@ -20,7 +19,7 @@ class UserRegisterPhoneView(CreateView):
 
     def post(self, request, *args, **kwargs):
         invite_code_for_user = generate_invite_code()
-        authorization_code_for_user = generate_authorization_code()
+        authorization_code_for_user = User.generate_authorization_code()
         phone_user = request.POST.get('phone')
         user = User.objects.filter(phone=phone_user)
         if user:
