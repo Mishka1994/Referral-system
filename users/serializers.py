@@ -9,10 +9,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['phone', 'is_active']
+        fields = ('phone', 'authorization_code', 'personal_invite_code', 'someone_invite_code',)
 
 
-class UserProfileSerializer(serializers.ModelSerializer):
+class UserInviteCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['phone', 'is_active', 'personal_invite_code', 'someone_invite_code']
+        fields = ('phone', 'someone_invite_code',)
