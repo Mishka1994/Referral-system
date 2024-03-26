@@ -15,7 +15,7 @@ drf-yasg==1.21.7
 exceptiongroup==1.2.0
 executing==2.0.1
 inflection==0.5.1
-ipython==8.22.2
+ipython==8.12.3
 jedi==0.19.1
 kombu==5.3.5
 matplotlib-inline==0.1.6
