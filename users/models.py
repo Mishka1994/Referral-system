@@ -20,7 +20,7 @@ class User(AbstractUser):
     username = None
 
     phone = PhoneNumberField(region='RU', verbose_name='Телефон', unique=True)
-    authorization_code = models.CharField(verbose_name='Код активации', default=None, blank=True,
+    authorization_code = models.CharField(max_length=4, verbose_name='Код активации', default=None, blank=True,
                                           null=True)
     is_active = models.BooleanField(default=False, verbose_name='Признак активности')
     personal_invite_code = models.CharField(max_length=6, verbose_name='Персональный инвайт-код',
@@ -29,6 +29,9 @@ class User(AbstractUser):
 
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return f'{self.phone}'
 
     @staticmethod
     def generate_authorization_code():

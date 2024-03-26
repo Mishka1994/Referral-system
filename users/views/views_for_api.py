@@ -60,6 +60,8 @@ class UserProfileView(generics.RetrieveAPIView):
 
     def retrieve(self, request, *args, **kwargs):
         phone = request.data.get('phone')
+        if not phone:
+            phone = request.query_params.get('phone')
         user = User.objects.filter(phone=phone).first()
         if user:
             list_referral_users = get_referral_users(user.personal_invite_code)
