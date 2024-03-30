@@ -1,8 +1,8 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import redirect, render
-from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, TemplateView, UpdateView
-from phonenumber_field.formfields import PhoneNumberField
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, TemplateView
+
 
 from users.forms import UserForm
 from users.models import User, generate_invite_code
@@ -21,7 +21,7 @@ class UserRegisterPhoneView(CreateView):
         invite_code_for_user = generate_invite_code()
         authorization_code_for_user = User.generate_authorization_code()
         phone_user = request.POST.get('phone')
-        user = User.objects.filter(phone=phone_user)
+        user = User.objects.filter(phone=phone_user).first()
         if user:
             user.authorization_code = authorization_code_for_user
             user.personal_invite_code = invite_code_for_user
@@ -35,7 +35,7 @@ class UserRegisterPhoneView(CreateView):
             )
             print(authorization_code_for_user)
 
-        return HttpResponseRedirect('http://localhost:8000/authorization_user/')
+        return HttpResponseRedirect('http://localhost:8001/authorization_user/')
 
 
 def authorization_view(request):

@@ -13,4 +13,4 @@ def get_referral_users(code):
 def send_authorization_code(code):
     """Функция для имитации отправки кода авторизации с сервиса"""
     time.sleep(3)
-    return code
+    print(code)

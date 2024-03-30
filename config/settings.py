@@ -84,6 +84,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'referral_system',
+        # 'USER': 'mihail',
+        # 'PASSWORD': '12345'
         'NAME': os.getenv('NAME_DATA_BASE'),
         'USER': os.getenv('USER_DATA_BASE'),
         'PASSWORD': os.getenv('PASSWORD_DATA_BASE'),

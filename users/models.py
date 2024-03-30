@@ -3,7 +3,6 @@ import string
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 
 from users.scripts import generate_invite_code
 
@@ -13,7 +12,7 @@ NULLABLE = {'blank': True, 'null': True}
 class User(AbstractUser):
     username = None
 
-    phone = PhoneNumberField(region='RU', verbose_name='Телефон', unique=True)
+    phone = models.CharField(max_length=12, verbose_name='Телефон', unique=True)
     authorization_code = models.CharField(max_length=4, verbose_name='Код активации', default=None, **NULLABLE)
     is_active = models.BooleanField(default=False, verbose_name='Признак активности')
     personal_invite_code = models.CharField(max_length=6, verbose_name='Персональный инвайт-код',
